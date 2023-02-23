@@ -6,9 +6,9 @@ const Navbar = () => {
     setShowNav(!showNav)
   }
   return (
-    <nav className='flex justify-between items-center shadow-md px-16 h-16'>
+    <nav className='flex justify-between items-center px-16 h-16'>
         <div>
-            <h1 className='w-full text-3xl font-bold underline decoration-[#FF0000] decoration-2'><span className=' underline decoration-black  text-[#FF0000]'>ANIME</span>STORE</h1>
+            <h1 className='w-full text-3xl font-bold decoration-2'>ANIMESTORE</h1>
         </div>
         <ul className='flex text-lg font-medium'>
             <li className='p-4 hover:text-[#FF0000]'>SignIn</li>
