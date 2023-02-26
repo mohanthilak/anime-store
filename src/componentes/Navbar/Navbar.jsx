@@ -6,13 +6,13 @@ const Navbar = () => {
     setShowNav(!showNav)
   }
   return (
-    <nav className='flex justify-between items-center px-16 h-16'>
+    <nav className='flex justify-between items-center mx-12 h-[9vh] border-b-2 border-x-2'>
         <div>
-            <h1 className='w-full text-3xl font-bold decoration-2'>ANIMESTORE</h1>
+            <h1 className=' text-xl p-4 w-full md:text-3xl font-bold decoration-2'>ANIMESTORE</h1>
         </div>
-        <ul className='flex text-lg font-medium'>
-            <li className='p-4 hover:text-[#FF0000]'>SignIn</li>
-            <li className='p-4 hover:text-[#FF0000]'>SignUp</li>
+        <ul className='hidden md:flex md:text-lg md:font-light md:uppercase'>
+            <li className='p-4 cursor-pointer hover:text-[#FF0000]'>SignIn</li>
+            <li className='p-4 cursor-pointer hover:text-[#000000]'>SignUp</li>
         </ul>
         {/* <div onClick={handleNav} className=" md:hidden">
           {showNav ?  <AiOutlineClose size={20} />: <AiOutlineMenu size={20} />}
