@@ -1,18 +1,21 @@
 import React, { useState } from 'react'
 import {AiOutlineClose, AiOutlineMenu} from "react-icons/ai"
+import { Link } from 'react-router-dom';
 const Navbar = () => {
   const [showNav, setShowNav] = useState(false);
   const handleNav = () =>{
     setShowNav(!showNav)
   }
   return (
-    <nav className='flex justify-between items-center mx-12 h-[9vh] border-b-2 border-x-2'>
+    <nav className='flex justify-between items-center mx-6 md:mx-12 h-[9vh] border-b-2 border-x-2'>
         <div>
-            <h1 className=' text-xl p-4 w-full md:text-3xl font-bold decoration-2'>ANIMESTORE</h1>
+          <Link to="/">
+              <h1 className=' text-xl p-4 w-full md:text-3xl font-bold decoration-2'>ANIMESTORE</h1>
+          </Link>
         </div>
         <ul className='hidden md:flex md:text-lg md:font-light md:uppercase'>
-            <li className='p-4 cursor-pointer hover:text-[#FF0000]'>SignIn</li>
-            <li className='p-4 cursor-pointer hover:text-[#000000]'>SignUp</li>
+            <li className='p-4 cursor-pointer hover:text-[#FF0000]'><Link to="signin">SignIn</Link></li>
+            <li className='p-4 cursor-pointer hover:text-[#000000]'><Link to="signup">SignUp</Link></li>
         </ul>
         {/* <div onClick={handleNav} className=" md:hidden">
           {showNav ?  <AiOutlineClose size={20} />: <AiOutlineMenu size={20} />}
