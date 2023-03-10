@@ -1,18 +1,44 @@
-import React, {useState} from 'react'
-import axios from 'axios';
+import {useEffect, useState} from 'react';
+import useAuth from '../../Hooks/useAuth';
+import axios from '../../API/axios';
+import {Link, useNavigate, useLocation} from "react-router-dom"
+
 const Signin = () => {
+const {auth, setAuth} = useAuth();
+    // console.log("auth:", auth)
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/home";
+    
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [responseMessage, setResponseMessage] = useState("")
 
+    useEffect(()=>{
+        if(auth?.uid){
+            navigate(-1)
+        }else{
+            console.log("did not navigate back")
+        }
+    },[])
+    
     const HandleSignIn = () =>{
         setResponseMessage("");
-        axios.post("http://localhost:4000/user/signin", {
+        axios.post("user/signin", {
             email, password
-        }).then(res=>{
+        },
+        {
+            withCredentials: true
+        }
+        ).then(res=>{
             if(res.data.success){
-                console.log("successsss")
+                console.log("successsss", res.data)
                 setResponseMessage("success", res.data);
+                setAuth({uid: res.data.user._id, roles: res.data.user.role, accessToken: res.data.accessToken})
+                setPassword("");
+                setEmail("");
+                navigate(from, { replace: true })
             }else setResponseMessage(res.data.message)
         })
     }

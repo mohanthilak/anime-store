@@ -1,13 +1,45 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import {AiOutlineDown} from "react-icons/ai"
+import useAuth from '../../Hooks/useAuth'
+import useAxiosPrivate from '../../Hooks/useAxiosPrivate'
 
 const HomeBL = () => {
+  const {auth} = useAuth();
+  const axiosPrivate = useAxiosPrivate() 
+
+
+  const [secretMessage, setSecretMessage] = useState('')
+  useEffect(()=>{
+    // axiosPrivate.get('/user/clear-cookies');
+    let isMounted = true;
+    const controller = new AbortController();
+    const getSecretMessage = async () => {
+      try{
+        const response = await axiosPrivate.get('/user/protected', {
+          signal: controller.signal
+        })
+        console.log(response);
+        setSecretMessage(response.data.message)
+        console.log("auth:",auth)
+
+      }catch(e){
+          console.error(e);
+      }
+    }
+    getSecretMessage()
+    return () =>{
+         isMounted = false;
+         controller.abort();
+    }
+  }, [])
+
+
   return (
     <div className='h-[91vh] mx-6 border-x-2 flex justify-center md:justify-between md:mx-12 p-4'>
 
         <div className='text-center md:text-left w-1/2 self-center text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl font-bold '>
-            <h1 className=' leading-tight'>JOIN US AND <br/> EXPERIENCE AN <br/> ANIME FANTASY PARK</h1>
+            <h1 className=' leading-tight'>JOIN US AND <br/> EXPERIENCE AN <br/> ANIME FANTASY PARK <br/> {secretMessage}</h1>
             <div className='flex justify-around font-semibold pt-6 text-lg md:w-2/3 lg:w-1/3'>
                 <Link to="/signin" className=' border-2 border-white px-2 py-1 hover:bg-black'>SIGNIN</Link>
                 <Link to="/signup" className=' border-2 border-white px-2 py-1 hover:bg-black'>SIGNUP</Link>
