@@ -1,84 +1,22 @@
 import React from 'react'
-import DS from "./Demon Slayer.jpg"
+// import DS from "./Demon Slayer.jpg"
+import bgImage from "./tanjiro.webp"
 
 const QuizList = () => {
   return (
     <div className=' md:mt-16 mt-32 mb-4'>
-      <div className=''>
-        <h1 className='text-4xl font-bold'>Quiz</h1>
+        <div className=''>
+        <h1 className='text-4xl font-bold'>Quizes</h1>
         <hr className=' mt-2 w-48 h-1 border:none text-black bg-black' />
       </div>
-      <div className='flex mt-8 justify-around flex-wrap'>
-      
-        <div className=' w-48 my-6 mx-10 cursor-pointer transition duration-700 hover:scale-125'>
-            <div >
-                <img style={{boxShadow: "0 2px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)"}} className=' h-72 w-44 rounded-2xl' src={DS} />
-            </div>
-            <div>
-                <h1>Demon Slayer</h1>
-                <div>
-                    <p>Season: 1</p>
-                    <p>Episodes: 0-200</p>
-                </div>
+        <div className='mt-8 flex justify-center'>
+            <div 
+        //     style={{backgroundImage:`url(${bgImage})`, backgroundSize: 'contain', backgroundPosition: 'center',
+        // backgroundRepeat: 'no-repeat'}}
+         className=" text-center text-3xl font-bold bg-tanjiro bg-contain bg-no-repeat bg-center w-1/2">
+                <p className='bg-white bg-opacity-60'>How well do you know your anime? Test yourself in our very own quiz portal where we offer multiple-choice questions for 10 different types of anime. Each quiz will have 10 questions, so let’s see what you got! Oh, and don’t you worry, you can reattempt any quiz as many times as you’d like. Make sure you know your anime well before attempting it.</p>
             </div>
         </div>
-        <div className=' w-48 my-6 mx-10 cursor-pointer transition duration-700 hover:scale-125'>
-            <div >
-                <img style={{boxShadow: "0 2px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)"}} className=' h-72 w-44 rounded-2xl' src={DS} />
-            </div>
-            <div>
-                <h1>Demon Slayer</h1>
-                <div>
-                    <p>Season: 1</p>
-                    <p>Episodes: 0-200</p>
-                </div>
-            </div>
-        </div> <div className=' w-48 my-6 mx-10 cursor-pointer transition duration-700 hover:scale-125'>
-            <div >
-                <img style={{boxShadow: "0 2px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)"}} className=' h-72 w-44 rounded-2xl' src={DS} />
-            </div>
-            <div>
-                <h1>Demon Slayer</h1>
-                <div>
-                    <p>Season: 1</p>
-                    <p>Episodes: 0-200</p>
-                </div>
-            </div>
-        </div> <div className=' w-48 my-6 mx-10 cursor-pointer transition duration-700 hover:scale-125'>
-            <div >
-                <img style={{boxShadow: "0 2px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)"}} className=' h-72 w-44 rounded-2xl' src={DS} />
-            </div>
-            <div>
-                <h1>Demon Slayer</h1>
-                <div>
-                    <p>Season: 1</p>
-                    <p>Episodes: 0-200</p>
-                </div>
-            </div>
-        </div> <div className=' w-48 my-6 mx-10 cursor-pointer transition duration-700 hover:scale-125'>
-            <div >
-                <img style={{boxShadow: "0 2px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)"}} className=' h-72 w-44 rounded-2xl' src={DS} />
-            </div>
-            <div>
-                <h1>Demon Slayer</h1>
-                <div>
-                    <p>Season: 1</p>
-                    <p>Episodes: 0-200</p>
-                </div>
-            </div>
-        </div> <div className=' w-48 my-6 mx-10 cursor-pointer transition duration-700 hover:scale-125'>
-            <div >
-                <img style={{boxShadow: "0 2px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)"}} className=' h-72 w-44 rounded-2xl' src={DS} />
-            </div>
-            <div>
-                <h1>Demon Slayer</h1>
-                <div>
-                    <p>Season: 1</p>
-                    <p>Episodes: 0-200</p>
-                </div>
-            </div>
-        </div>
-      </div>
     </div>
   )
 }

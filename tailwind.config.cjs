@@ -8,6 +8,9 @@ module.exports = {
     extend: {
       fontFamily: {
         'raleway': ['Raleway', 'sans-serif']
+      },
+      backgroundImage: {
+        'tanjiro': "url(./src/pages/HomeAfterLogin/tanjiro.webp)"
       }
     },
   },
