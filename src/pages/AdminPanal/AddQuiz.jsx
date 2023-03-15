@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import LeftAdmin from './LeftAdmin'
 import { AiOutlineRight, AiOutlineLeft } from 'react-icons/ai';
+import useAxiosPrivate from '../../Hooks/useAxiosPrivate'
+import axios from "axios"
+
 
 const AddQuizComponent = () => {
+    const axiosPrivate = useAxiosPrivate();
+
     const [questionList, setQuestionList] = useState([]);
     const [questionText, setQuestionText] = useState("");
     const [animeName, setAnimeName] = useState("")
     const [season, setSeason] = useState("")
-    const [file, setFile] = useState()
+    const [file, setFile] = useState('')
     const [optionA, setOptionA] = useState('')
     const [optionB, setOptionB] = useState('')
     const [optionC, setOptionC] = useState('')
@@ -60,6 +65,25 @@ const AddQuizComponent = () => {
             }
         }else{
             alert("Make sure All fields are selected")
+        }
+    }
+
+    const HandleSubmit = () => {
+        console.log("length", questionList.length)
+        if(questionList.length === 10 && animeName && season){
+            axiosPrivate.post("/quiz/create",{
+                    animeName,
+                    season,
+                    questions: questionList,
+                    image: animeName
+                }
+            ).then(res=>{
+                if(res.data.success){
+                    console.log("YEeeeee", res.data);
+                }
+            }).catch(e=>{
+                console.log("error", e)
+            })
         }
     }
     
@@ -145,9 +169,9 @@ const AddQuizComponent = () => {
                     </div>
                 </div>
             </div>
-            <div className='flex justify-center'>
-                <button className='px-2 py-1 bg-black text-white hover:text-red-500 text-xl'>Submit</button>
-            </div>
+            {enableSubmit ? <div className='flex justify-center'>
+                <button onClick={HandleSubmit} className='px-2 py-1 bg-black text-white hover:text-red-500 text-xl'>Submit</button>
+            </div> : <></>}
         </div>
     )
 }

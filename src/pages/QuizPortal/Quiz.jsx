@@ -1,16 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import useAxiosPrivate from '../../Hooks/useAxiosPrivate';
-import { } from "react-icons"
+import useAuth from '../../Hooks/useAuth';
+import { useParams } from 'react-router-dom';
 
-const Quiz = ({ quiz_id }) => {
+const Quiz = () => {
+    const {auth} = useAuth();
     const axiosPrivate = useAxiosPrivate()
-    const [quiz, setQuiz] = useState([{ question: "who is the most strongest in Naruto?", optionA: "Naruto", optionB: "Susuke", optionC: "Hashirama", optionD: "Madara", answer: 'a' }, { question: "who is the most weakest in Naruto?", optionA: "Naruto", optionB: "Susuke", optionC: "Hashirama", optionD: "Madara", answer: 'd' }]);
+    const [quiz, setQuiz] = useState([]);
+    // const [quiz, setQuiz] = useState([{ question: "who is the most strongest in Naruto?", optionA: "Naruto", optionB: "Susuke", optionC: "Hashirama", optionD: "Madara", answer: 'a' }, { question: "who is the most weakest in Naruto?", optionA: "Naruto", optionB: "Susuke", optionC: "Hashirama", optionD: "Madara", answer: 'd' }]);
     const [question, setQuestion] = useState({});
     const [count, setCount] = useState(0);
     const [score, setScore] = useState(0);
     const [showFinalScore, setShowFinalScore] = useState(false);
     const [option, setOption] = useState('')
+    const {quiz_id} = useParams()
 
+    useEffect(()=>{
+        axiosPrivate.get(`/quiz/quiz/${quiz_id}`).then(res=>{
+            console.log(res.data.quiz.questions)
+            setQuiz(res.data.quiz.questions)
+            setQuestion(res.data.quiz.questions[count])
+        })
+    }, [])
     
     const HandlePreviousQuestion = () => {
         if (count > 0) {
@@ -37,6 +48,7 @@ const Quiz = ({ quiz_id }) => {
         }else {
             console.log("else hit")
             setShowFinalScore(true);
+            axiosPrivate.post('/quiz/set-attempted', {score, uid: auth.uid, quizID: quiz_id})
         }
         console.log(score)
     }

@@ -14,6 +14,7 @@ import Quiz from './pages/QuizPortal/Quiz'
 import AdminPanal from './pages/AdminPanal/AdminPanal'
 import QuizDetails from './pages/AdminPanal/QuizDetails'
 import AddQuiz from './pages/AdminPanal/AddQuiz'
+import Products from './pages/MerchStore/Products'
 
 function App() {
 
@@ -46,6 +47,9 @@ function App() {
                 </Route>
                 <Route element={<RequireAuth />} >
                     <Route path="admin-panel/add-quiz" element={<AddQuiz />} />
+                </Route>
+                <Route element={<RequireAuth />} >
+                    <Route path="store" element={<Products />} />
                 </Route>
             </Route>
         </Routes>
