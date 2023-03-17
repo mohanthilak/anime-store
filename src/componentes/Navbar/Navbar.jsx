@@ -12,7 +12,7 @@ const Navbar = () => {
     setShowNav(!showNav)
   }
   return (
-    <nav className={`flex justify-between items-center px-6 md:px-12 h-[9vh] shadow-lg ${path === "admin-panel" ? "bg-black text-white":""}`}>
+    <nav className={`flex justify-between bg-black text-white items-center px-6 md:px-12 h-[9vh] shadow-lg ${path === "admin-panel" ? "bg-black text-white":""}`}>
         <div>
           <Link to="/">
               <h1 className=' text-xl p-4 w-full md:text-3xl font-bold decoration-2'><span className='text-red-500'>ANIME</span>STORE</h1>
@@ -26,8 +26,8 @@ const Navbar = () => {
             <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="#">Logout</Link></li>
         </ul> :
         <ul className='hidden md:flex md:text-lg md:font-light md:uppercase gap-8'>
-            <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="signin">SignIn</Link></li>
-            <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="signup">SignUp</Link></li>
+            <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="signin">Login</Link></li>
+            <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="signup">Create Account</Link></li>
         </ul>
         }
        
@@ -42,8 +42,8 @@ const Navbar = () => {
             <Link to="store"><li className='p-4 hover:font-bold hover:border-b-2 hover:border-black'>Store</li></Link>
             <Link to="#"><li className='p-4 hover:font-bold hover:border-b-2 hover:border-black'>Logout</li></Link>
             </ul> : <ul className='uppercase'>
-            <Link to="signin"><li className='p-4 hover:font-bold hover:border-b-2 hover:border-black'>SignIn</li></Link>
-            <Link to="signup"><li className='p-4 hover:font-bold hover:border-b-2 hover:border-black'>SignUp</li></Link>
+            <Link to="signin"><li className='p-4 hover:font-bold hover:border-b-2 hover:border-black'>Login</li></Link>
+            <Link to="signup"><li className='p-4 hover:font-bold hover:border-b-2 hover:border-black'>Create Account</li></Link>
           </ul>}
           
           </div>

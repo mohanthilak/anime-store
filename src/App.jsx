@@ -15,6 +15,8 @@ import AdminPanal from './pages/AdminPanal/AdminPanal'
 import QuizDetails from './pages/AdminPanal/QuizDetails'
 import AddQuiz from './pages/AdminPanal/AddQuiz'
 import Products from './pages/MerchStore/Products'
+import TC from './pages/T&C/TC'
+import Faq from './pages/FAQ/Faq'
 
 function App() {
 
@@ -42,11 +44,20 @@ function App() {
                 <Route element={<RequireAuth />} >
                     <Route path="admin-panel" element={<AdminPanal />} />
                 </Route>
+                {/* <Route element={<RequireAuth />} >
+                    <Route path="admin-panel/quiz-panel" element={<QuizPanel />} />
+                </Route> */}
                 <Route element={<RequireAuth />} >
                     <Route path="admin-panel/quiz" element={<QuizDetails />} />
                 </Route>
                 <Route element={<RequireAuth />} >
                     <Route path="admin-panel/add-quiz" element={<AddQuiz />} />
+                </Route>
+                <Route element={<RequireAuth />} >
+                    <Route path="tandc" element={<TC />} />
+                </Route>
+                <Route element={<RequireAuth />} >
+                    <Route path="faq" element={<Faq />} />
                 </Route>
                 <Route element={<RequireAuth />} >
                     <Route path="store" element={<Products />} />

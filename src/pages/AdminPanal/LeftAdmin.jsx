@@ -18,7 +18,7 @@ const LeftAdmin = () => {
             <div className='border-t-2 border-red-500 h-10 flex justify-center items-center cursor-pointer hover:border-x-2'>
                 <h1 className='text-2xl font-semibold  '>Feedback</h1>
             </div>
-            <Link to="add-quiz">
+            <Link to="/admin-panel/quiz">
                 <div className='border-t-2 border-red-500 h-10 flex justify-center items-center cursor-pointer hover:border-x-2'>
                     <h1 className='text-2xl font-semibold  '>Quiz</h1>
                 </div>

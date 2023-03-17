@@ -25,7 +25,7 @@ const Report = () => {
                             <p className='text-xl'>Number: {quizCount}</p>
                         </div>
                     </div>
-                    <div className='w-[175px] h-[175px] bg-red-500 rounded-3xl flex justify-center items-center'>
+                    <div className='w-[175px] h-[175px] bg-black rounded-3xl flex justify-center items-center'>
                         <div className='text-center'>
                             <h1 className='text-2xl font-bold'>Merch</h1>
                             <p className='text-xl'>Number: {merchCount}</p>
@@ -39,7 +39,7 @@ const Report = () => {
                             <p className='text-xl'>Count: {userCount}</p>
                         </div>
                     </div>
-                    <div className='w-[175px] h-[175px] bg-red-500 rounded-3xl'></div>
+                    <div className='w-[175px] h-[175px] bg-black rounded-3xl'></div>
                 </div>
             </div>
         </div>

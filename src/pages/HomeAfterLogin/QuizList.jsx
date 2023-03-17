@@ -6,7 +6,7 @@ const QuizList = () => {
   return (
     <div className=' md:mt-16 mt-32 mb-4'>
         <div className=''>
-        <h1 className='text-4xl font-bold'>Quizes</h1>
+        <h1 className='text-4xl font-bold'>Quizzes</h1>
         <hr className=' mt-2 w-48 h-1 border:none text-black bg-black' />
       </div>
         <div className='mt-8 flex justify-center'>

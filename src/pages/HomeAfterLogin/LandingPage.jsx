@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Gojo  from './userhome.png'
 import useAuth from '../../Hooks/useAuth'
 import useAxiosPrivate from '../../Hooks/useAxiosPrivate'
+import {Link} from "react-router-dom"
 
 const LandingPage = () => {
     const axiosPrivate = useAxiosPrivate() 
@@ -39,13 +40,22 @@ const LandingPage = () => {
                 <h1>ATTEMPT QUIZ,</h1>
                 <h1>& CHAT WITH FRIENDS</h1>
             </div>
-            <div className='flex lg:w-2/3 justify-between mt-2 text-xl'>
+                <div className='flex lg:w-2/3 justify-between mt-2 text-xl'>
+            <Link to="/aboutus">
                 <div className='hover:bg-black hover:text-white px-4 py-2 cursor-pointer'>
                     <button>ABOUT US</button>
                 </div>
+            </Link>
+                <Link to="/tandc">
                 <div className='hover:bg-black hover:text-white px-4 py-2 cursor-pointer'>
                     <button>TERMS & CONDITIONS</button>
                 </div>
+                </Link>
+                <Link to="/faq">
+                <div className='hover:bg-black hover:text-white px-4 py-2 cursor-pointer'>
+                    <button>FAQ</button>
+                </div>
+                </Link>
             </div>
         </div>
         {/* Right Side */}
