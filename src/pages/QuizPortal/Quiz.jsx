@@ -35,8 +35,10 @@ const Quiz = () => {
     
     const optionClicked = async (ch) => {
         console.log(ch, question.answer)
+        let scoreBuf = score;
         if (ch == question.answer){
-            setScore(score + 1);
+            scoreBuf+=1;
+            setScore(scoreBuf);
             console.log("match")
         } 
         console.log("count:", count, "len:", quiz.length)
@@ -48,9 +50,9 @@ const Quiz = () => {
         }else {
             console.log("else hit")
             setShowFinalScore(true);
-            axiosPrivate.post('/quiz/set-attempted', {score, uid: auth.uid, quizID: quiz_id})
+            axiosPrivate.post('/quiz/set-attempted', {score:scoreBuf, uid: auth.uid, quizID: quiz_id})
         }
-        console.log(score)
+        console.log(scoreBuf)
     }
     useEffect(()=>{
         // axiosPrivate.get(`/quiz/${quiz_id}`).then(res=>{

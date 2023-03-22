@@ -17,6 +17,14 @@ import AddQuiz from './pages/AdminPanal/AddQuiz'
 import Products from './pages/MerchStore/Products'
 import TC from './pages/T&C/TC'
 import Faq from './pages/FAQ/Faq'
+import Cart from './pages/Cart/Cart'
+import PaymentGateway from './pages/Payments/PaymentGateway'
+import Chat from './pages/Chat/Chat'
+import ViewProduct from './pages/MerchStore/viewProduct/ViewProduct'
+import Feedback from './pages/feedback/Feedback'
+import AddProduct from './pages/AdminPanal/AddProduct'
+import UsersDetails from './pages/AdminPanal/UsersDetails'
+
 
 function App() {
 
@@ -41,16 +49,19 @@ function App() {
                 <Route element={<RequireAuth />} >
                     <Route path="quiz/:quiz_id" element={<Quiz />} />
                 </Route> 
-                <Route element={<RequireAuth />} >
+                <Route element={<RequireAuth allowedRoles={["admin"]} />} >
                     <Route path="admin-panel" element={<AdminPanal />} />
                 </Route>
-                {/* <Route element={<RequireAuth />} >
-                    <Route path="admin-panel/quiz-panel" element={<QuizPanel />} />
-                </Route> */}
-                <Route element={<RequireAuth />} >
+                <Route element={<RequireAuth allowedRoles={["admin"]} />} >
+                    <Route path="admin-panel/customers" element={<UsersDetails />} />
+                </Route>
+                <Route element={<RequireAuth allowedRoles={["admin"]} />}>
+                    <Route path="admin-panel/add-product" element={<AddProduct />} />
+                </Route>
+                <Route element={<RequireAuth allowedRoles={["admin"]} />} >
                     <Route path="admin-panel/quiz" element={<QuizDetails />} />
                 </Route>
-                <Route element={<RequireAuth />} >
+                <Route element={<RequireAuth allowedRoles={["admin"]} />} >
                     <Route path="admin-panel/add-quiz" element={<AddQuiz />} />
                 </Route>
                 <Route element={<RequireAuth />} >
@@ -59,8 +70,23 @@ function App() {
                 <Route element={<RequireAuth />} >
                     <Route path="faq" element={<Faq />} />
                 </Route>
+                    <Route element={<RequireAuth />} >
+                        <Route path="store" element={<Products />} />
+                    </Route>
+                    <Route element={<RequireAuth />} >
+                        <Route path="cart" element={<Cart />} />
+                    </Route>
+                    <Route element={<RequireAuth />} >
+                        <Route path="payment-gatway" element={<PaymentGateway />} />
+                    </Route>
+                    <Route element={<RequireAuth />} >
+                        <Route path="product/:id" element={<ViewProduct />} />
+                    </Route>
                 <Route element={<RequireAuth />} >
-                    <Route path="store" element={<Products />} />
+                    <Route path="chat" element={<Chat />} />
+                </Route>
+                <Route element={<RequireAuth />} >
+                    <Route path="feedback" element={<Feedback />} />
                 </Route>
             </Route>
         </Routes>

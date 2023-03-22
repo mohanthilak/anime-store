@@ -4,12 +4,14 @@ import React, {useState} from 'react'
 const Signin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
     const [responseMessage, setResponseMessage] = useState("")
 
     const HandleSignUp = () =>{
-        setResponseMessage('')
+        if(!email || !password || !username) return alert("Enter all fields")
+        setResponseMessage('');
         axios.post("http://localhost:4000/user/signup", {
-            email, password
+            email, password, username
         }).then(res=>{
             console.log("res.data:", res.data)
             if(res.data.success){
@@ -18,7 +20,6 @@ const Signin = () => {
             }else setResponseMessage(res.data.message);
         })
     }
-
   return (
     <div className='h-[91vh] mx-6 flex justify-center items-center border-x-2 md:mx-12'>
         <div className=' md:w-96 bg-white text-black px-5 flex flex-col items-center'>
@@ -28,7 +29,11 @@ const Signin = () => {
             </div>
             <div className=' mt-6'>
                 {/* <label>Email</label> */}
-                <input onChange={(e)=>setEmail(e.target.value)} className='w-64 md:w-80 px-2 h-9  bg-gray-300' type="email" placeholder='Email' /> 
+                <input value={username} onChange={(e)=>{const value = e.target.value.replace(/[@]/g, "");setUsername(value)}} className='w-64 md:w-80 px-2 h-9  bg-gray-300' type="text" placeholder='Username' /> 
+            </div>
+            <div className=' mt-6'>
+                {/* <label>Email</label> */}
+                <input value={email} onChange={(e)=>{setEmail(e.target.value)}} className='w-64 md:w-80 px-2 h-9  bg-gray-300' type="text" placeholder='Email' /> 
             </div>
             <div className=' mt-6'>
                 {/* <label>Email</label> */}

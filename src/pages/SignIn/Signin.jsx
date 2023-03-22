@@ -26,7 +26,7 @@ const {auth, setAuth} = useAuth();
     const HandleSignIn = () =>{
         setResponseMessage("");
         axios.post("user/signin", {
-            email, password
+            authText:email, password
         },
         {
             withCredentials: true
@@ -38,6 +38,7 @@ const {auth, setAuth} = useAuth();
                 setAuth({uid: res.data.user._id, roles: res.data.user.role, accessToken: res.data.accessToken})
                 setPassword("");
                 setEmail("");
+                if(res.data.user.role === "admin") navigate("/admin-panel")
                 navigate(from, { replace: true })
             }else setResponseMessage(res.data.message)
         })
@@ -50,7 +51,7 @@ const {auth, setAuth} = useAuth();
                 <p>{responseMessage?responseMessage:""}</p>
             </div>
             <div className=' mt-6'>
-                <input onChange={(e)=>setEmail(e.target.value)} className='w-64 md:w-80 px-2 h-9  bg-gray-300' type="email" placeholder='Email' /> 
+                <input onChange={(e)=>setEmail(e.target.value)} className='w-64 md:w-80 px-2 h-9  bg-gray-300' type="text" placeholder='Email' /> 
             </div>
             <div className=' mt-6'>
                 {/* <label>Email</label> */}

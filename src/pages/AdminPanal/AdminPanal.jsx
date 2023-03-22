@@ -7,12 +7,14 @@ const Report = () => {
     const [quizCount, setQuizCount] = useState(0);
     const [merchCount, setMerchCount] = useState(0);
     const [userCount, setUserCount] = useState(0);
+    const [feedbackCount, setFeedbackCount] = useState(0);
 
     useEffect(()=>{
         axiosPrivate.get('/user/get-count-stats').then(res=>{
             setQuizCount(res.data.q)
             setUserCount(res.data.u)
             setMerchCount(res.data.p)
+            setFeedbackCount(res.data.f)
         })
     }, [])
     return (
@@ -33,13 +35,18 @@ const Report = () => {
                     </div>
                 </div>
                 <div className='flex justify-around'>
+                    <div className='w-[175px] h-[175px] bg-black rounded-3xl flex justify-center items-center'>
+                    <div className='text-center'>
+                            <h1 className='text-2xl font-bold'>Feedbacks</h1>
+                            <p className='text-xl'>Count: {feedbackCount}</p>
+                        </div>
+                    </div>
                     <div className='w-[175px] h-[175px] bg-red-500 rounded-3xl flex justify-center items-center'>
                         <div className='text-center'>
                             <h1 className='text-2xl font-bold'>User</h1>
                             <p className='text-xl'>Count: {userCount}</p>
                         </div>
                     </div>
-                    <div className='w-[175px] h-[175px] bg-black rounded-3xl'></div>
                 </div>
             </div>
         </div>

@@ -23,7 +23,7 @@ const AddQuizComponent = () => {
 
     console.log("hithit");
     const HandlePrevious = () => {
-        if(count>0){
+        if (count > 0) {
             const countBuffer = count - 1;
             setCount(countBuffer)
             const question = questionList[countBuffer];
@@ -36,8 +36,8 @@ const AddQuizComponent = () => {
         }
     }
 
-    const HandleNext= () => {
-        if(questionText && optionA && optionB && optionC && optionD && answer){
+    const HandleNext = () => {
+        if (questionText && optionA && optionB && optionC && optionD && answer) {
             const question = {
                 question: questionText,
                 optionA,
@@ -47,9 +47,9 @@ const AddQuizComponent = () => {
                 answer
             };
             const countBuffer = count + 1;
-            if(countBuffer <= 10){
+            if (countBuffer <= 10) {
                 setQuestionList([...questionList, question]);
-                if(countBuffer === 10){
+                if (countBuffer === 10) {
                     console.log("done", questionList)
                     setEnableSubmit(true);
                 }
@@ -60,33 +60,33 @@ const AddQuizComponent = () => {
                 setOptionC("")
                 setOptionD("")
                 setAnswer("")
-            }else {
+            } else {
                 console.log("Exceeded")
             }
-        }else{
+        } else {
             alert("Make sure All fields are selected")
         }
     }
 
     const HandleSubmit = () => {
         console.log("length", questionList.length)
-        if(questionList.length === 10 && animeName && season){
-            axiosPrivate.post("/quiz/create",{
-                    animeName,
-                    season,
-                    questions: questionList,
-                    image: animeName
-                }
-            ).then(res=>{
-                if(res.data.success){
+        if (questionList.length === 10 && animeName && season) {
+            const formData = new FormData();
+            formData.append('image', file)
+            formData.append('animeName', animeName)
+            formData.append('season', season)
+            formData.append('questions', questions)
+
+            axiosPrivate.post("/quiz/create", formData).then(res => {
+                if (res.data.success) {
                     console.log("YEeeeee", res.data);
                 }
-            }).catch(e=>{
+            }).catch(e => {
                 console.log("error", e)
             })
         }
     }
-    
+
     return (
         <div className='p-5 w-3/4'>
 
@@ -100,29 +100,29 @@ const AddQuizComponent = () => {
                     <div className='flex  gap-5'>
                         <div >
                             <label htmlFor="question">Anime Name:</label>
-                            <input type="text" className='border-2 ml-2 w-[400px] border-gray-500' id="question" value={animeName} onChange={(e)=>setAnimeName(e.target.value)} />
+                            <input type="text" className='border-2 ml-2 w-[400px] border-gray-500' id="question" value={animeName} onChange={(e) => setAnimeName(e.target.value)} />
                         </div>
                         <div>
                             <label htmlFor="Season">Season:</label>
-                            <input type="text" className='border-2 ml-2 border-gray-500' id="question" value={season} onChange={(e)=>setSeason(e.target.value)} />
+                            <input type="text" className='border-2 ml-2 border-gray-500' id="question" value={season} onChange={(e) => setSeason(e.target.value)} />
                         </div>
                     </div>
 
                     <div>
                         <label htmlFor="image">Image:</label>
-                        <input type="file"  id="image"  onChange={(e)=>setFile(e.target.value)} />
+                        <input type="file" id="image" onChange={(e) => setFile(e.target.files[0])} />
                     </div>
                 </div>
-                
-           </div>
+
+            </div>
 
 
 
             <div>
                 <div>
-                    <h1>Question: {count+1}/10</h1>
+                    <h1>Question: {count + 1}/10</h1>
                 </div>
-            
+
                 <div className=' flex justify-between items-center'>
                     <div onClick={HandlePrevious} className=' cursor-pointer'>
                         <div>
@@ -132,28 +132,28 @@ const AddQuizComponent = () => {
                     <div className='flex flex-col gap-2'>
                         <div className=''>
                             <label htmlFor="question">Question:</label><br />
-                            <input type="text" className='border-2 w-[60vw] border-gray-500' id="question" value={questionText} onChange={(e)=>setQuestionText(e.target.value)} />
+                            <input type="text" className='border-2 w-[60vw] border-gray-500' id="question" value={questionText} onChange={(e) => setQuestionText(e.target.value)} />
                         </div>
                         <div className=''>
                             <label htmlFor="optionA">OptionA:</label><br />
-                            <input type="text" id="optionA" value={optionA} className='border-2 w-[60vw] border-gray-500' onChange={(e)=>setOptionA(e.target.value)} />
+                            <input type="text" id="optionA" value={optionA} className='border-2 w-[60vw] border-gray-500' onChange={(e) => setOptionA(e.target.value)} />
                         </div>
                         <div className=''>
                             <label htmlFor="optionB">OptionB:</label><br />
-                            <input type="text" id="optionB" value={optionB} className='border-2 w-[60vw] border-gray-500' onChange={(e)=>setOptionB(e.target.value)} />
+                            <input type="text" id="optionB" value={optionB} className='border-2 w-[60vw] border-gray-500' onChange={(e) => setOptionB(e.target.value)} />
                         </div>
                         <div className=''>
                             <label htmlFor="question">OptionC:</label><br />
-                            <input type="text" id="optionC" value={optionC} className='border-2 w-[60vw] border-gray-500' onChange={(e)=>setOptionC(e.target.value)} />
+                            <input type="text" id="optionC" value={optionC} className='border-2 w-[60vw] border-gray-500' onChange={(e) => setOptionC(e.target.value)} />
                         </div>
                         <div className=''>
                             <label htmlFor="question">OptionD:</label><br />
-                            <input type="text" value={optionD} className='border-2 w-[60vw] border-gray-500' onChange={(e)=>setOptionD(e.target.value)} />
+                            <input type="text" value={optionD} className='border-2 w-[60vw] border-gray-500' onChange={(e) => setOptionD(e.target.value)} />
                         </div>
                         <div className=''>
                             <label htmlFor="question">Answer:</label>
                             {/* <br /> */}
-                            <select name="answer" id="answer" onChange={(e)=>setAnswer(e.target.value)}>
+                            <select name="answer" id="answer" onChange={(e) => setAnswer(e.target.value)}>
                                 <option value="a">a</option>
                                 <option value="b">b</option>
                                 <option value="c">c</option>
@@ -161,7 +161,7 @@ const AddQuizComponent = () => {
                             </select>
                         </div>
                     </div>
-                    
+
                     <div onClick={HandleNext} className=' cursor-pointer'>
                         <div>
                             <AiOutlineRight size={40} />
@@ -177,12 +177,12 @@ const AddQuizComponent = () => {
 }
 
 const AddQuiz = () => {
-  return (
-    <div className='flex'>
-        <LeftAdmin />
-        <AddQuizComponent />
-    </div>
-  )
+    return (
+        <div className='flex'>
+            <LeftAdmin />
+            <AddQuizComponent />
+        </div>
+    )
 }
 
 export default AddQuiz
