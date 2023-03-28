@@ -16,7 +16,8 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.8.1",
-    "react-simple-star-rating": "^5.1.7"
+    "react-simple-star-rating": "^5.1.7",
+    "socket.io-client": "^4.6.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

@@ -75,7 +75,9 @@ const AddQuizComponent = () => {
             formData.append('image', file)
             formData.append('animeName', animeName)
             formData.append('season', season)
-            formData.append('questions', questions)
+            for(let i=0; i< questionList.length; i++){
+                formData.append(`question${i}`, questionList[i])
+            }
 
             axiosPrivate.post("/quiz/create", formData).then(res => {
                 if (res.data.success) {
