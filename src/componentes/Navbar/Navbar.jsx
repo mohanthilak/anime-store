@@ -24,7 +24,7 @@ const Navbar = () => {
     })
   }
   return (
-    <nav className={`flex justify-between bg-black text-white items-center px-6 md:px-12 h-[9vh] shadow-lg ${path === "admin-panel" ? "bg-black text-white":""}`}>
+    <nav className={`z-50 flex justify-between bg-black text-white items-center px-6 md:px-12 h-[9vh] shadow-lg ${path === "admin-panel" ? "bg-black text-white":""}`}>
         <div>
           <Link to="/">
               <h1 className=' text-xl p-4 w-full md:text-3xl font-bold decoration-2'><span className='text-red-500'>ANIME</span>STORE</h1>
@@ -32,6 +32,7 @@ const Navbar = () => {
         </div>
         {auth?.accessToken ? <ul className={`hidden ${path === "admin-panel" ? "hidden":"block"} md:flex md:text-lg md:font-light md:uppercase gap-8`}>
             <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="home">Home</Link></li>
+            <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="feedback">Feedback</Link></li>
             <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="quiz">Quiz</Link></li>
             <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="chat">Chat</Link></li>
             <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="store">Store</Link></li>
