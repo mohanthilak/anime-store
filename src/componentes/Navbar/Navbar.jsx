@@ -26,17 +26,23 @@ const Navbar = () => {
   return (
     <nav className={`z-50 flex justify-between bg-black text-white items-center px-6 md:px-12 h-[9vh] shadow-lg ${path === "admin-panel" ? "bg-black text-white":""}`}>
         <div>
-          <Link to="/">
+          <Link to={auth?.accessToken ? "/home": "/"}>
               <h1 className=' text-xl p-4 w-full md:text-3xl font-bold decoration-2'><span className='text-red-500'>ANIME</span>STORE</h1>
           </Link>
         </div>
-        {auth?.accessToken ? <ul className={`hidden ${path === "admin-panel" ? "hidden":"block"} md:flex md:text-lg md:font-light md:uppercase gap-8`}>
-            <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="home">Home</Link></li>
-            <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="feedback">Feedback</Link></li>
-            <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="quiz">Quiz</Link></li>
-            <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="chat">Chat</Link></li>
-            <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="store">Store</Link></li>
-            <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600' onClick={HandleLogout}>Logout </li>
+        {auth?.accessToken ? <ul className={`${path === "admin-panel" ? "hidden":"block md:flex md:text-lg md:font-light md:uppercase gap-8"} `}>
+            {/* <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="home">Home</Link></li> */}
+            {auth.role === 'user'? <>
+              <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="feedback">Feedback</Link></li>
+              <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="quiz">Quiz</Link></li>
+              <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="chat">Chat</Link></li>
+              <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="store">Store</Link></li>
+              <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600' onClick={HandleLogout}>Logout </li>
+            </> :<>
+                <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="/admin-panel">Admin</Link></li>
+                <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600' onClick={HandleLogout}>Logout </li>
+            </>
+            }
         </ul> :
         <ul className='hidden md:flex md:text-lg md:font-light md:uppercase gap-8'>
             <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="signin">Login</Link></li>
@@ -49,7 +55,7 @@ const Navbar = () => {
         </div>
         <div className={showNav ? ` fixed right-0  top-14 w-[60%] border-l-4 border-b-4 ${path === "admin-panel" ? "hidden bg-black text-white":"block bg-white text-black"}  ease-in-out duration-500  md:hidden` : 'fixed right-[-100%]'}>
             {auth?.accessToken ? <ul className='uppercase'>
-            <Link to="home"><li className='p-4 hover:font-bold hover:border-b-2 hover:border-black'>Home</li></Link>
+            {/* <Link to="home"><li className='p-4 hover:font-bold hover:border-b-2 hover:border-black'>Home</li></Link> */}
             // <Link to="admin-panel"><li className='p-4 hover:font-bold hover:border-b-2 hover:border-black'>Admin</li></Link>
             <Link to="chat"><li className='p-4 hover:font-bold hover:border-b-2 hover:border-black'>Chat</li></Link>
             <Link to="quiz"><li className='p-4 hover:font-bold hover:border-b-2 hover:border-black'>Quiz</li></Link>

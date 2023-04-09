@@ -1,7 +1,6 @@
 import React from 'react'
 import AboutUs from '../AboutUs/AboutUs'
 import LandingPage from './LandingPage'
-import QuizList from './QuizList'
 
 const HomeAL = () => {
   return (

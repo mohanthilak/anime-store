@@ -1,38 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
-import {AiOutlineDown} from "react-icons/ai"
 import useAuth from '../../Hooks/useAuth'
-import useAxiosPrivate from '../../Hooks/useAxiosPrivate'
 
 const HomeBL = () => {
   const {auth} = useAuth();
-  const axiosPrivate = useAxiosPrivate() 
-
-
-  const [secretMessage, setSecretMessage] = useState('')
-  useEffect(()=>{
-    // axiosPrivate.get('/user/clear-cookies');
-    let isMounted = true;
-    const controller = new AbortController();
-    const getSecretMessage = async () => {
-      try{
-        const response = await axiosPrivate.get('/user/protected', {
-          signal: controller.signal
-        })
-        console.log(response);
-        setSecretMessage(response.data.message)
-        console.log("auth:",auth)
-
-      }catch(e){
-          console.error(e);
-      }
-    }
-    getSecretMessage()
-    return () =>{
-         isMounted = false;
-         controller.abort();
-    }
-  }, [])
 
 
   return (

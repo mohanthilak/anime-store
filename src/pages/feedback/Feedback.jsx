@@ -19,9 +19,9 @@ const Feedback = () => {
         }
     }
   return (
-    <div style={{backgroundImage: `url(${bg})`}} className='h-[100vh] bg-no-repeat bg-right-bottom  w-[100vw] -z-10  absolute top-0'>
-        <div  className='mt-24 '> 
-            <div className='px-4'>
+    <div className='h-[100vh] w-[100vw] -z-10 absolute top-0'>
+        <div  className='h-[100vh] pt-16  flex'> 
+            <div className='px-4 bg w-1/2'>
                 <div >
                     <h1 className='text-2xl mb-1 font-semibold'>Feedback</h1>
                     <hr className=' my-1  w-36 h-[3px] border:none text-black bg-black' />
@@ -40,6 +40,9 @@ const Feedback = () => {
                         <textarea className="text-xl font-md p-4 resize-none border-2 border-black" name="category" id="category" maxLength={450} cols="40"  rows="15"></textarea>
                     </div>
                 </form>
+            </div>
+            <div className=' w-1/2 flex justify-end items-end'>
+                <img src={bg} className="h-96 w-96" alt="" />
             </div>
 
             

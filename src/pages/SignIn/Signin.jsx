@@ -35,11 +35,15 @@ const {auth, setAuth} = useAuth();
             if(res.data.success){
                 console.log("successsss", res.data)
                 setResponseMessage("success", res.data);
-                setAuth({uid: res.data.user._id, roles: res.data.user.role, accessToken: res.data.accessToken})
+                setAuth({uid: res.data.user._id, role: res.data.user.role, accessToken: res.data.accessToken})
                 setPassword("");
                 setEmail("");
-                if(res.data.user.role === "admin") navigate("/admin-panel")
-                navigate(from, { replace: true })
+                if(res.data.user.role === "admin"){
+                    console.log("ewwewew")
+                    navigate("/admin-panel")
+                } else if(res.data.user.role === "user"){
+                    navigate("/home")
+                }
             }else setResponseMessage(res.data.message)
         })
     }

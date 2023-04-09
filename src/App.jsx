@@ -24,6 +24,7 @@ import ViewProduct from './pages/MerchStore/viewProduct/ViewProduct'
 import Feedback from './pages/feedback/Feedback'
 import AddProduct from './pages/AdminPanal/AddProduct'
 import UsersDetails from './pages/AdminPanal/UsersDetails'
+import FeedBackList from './pages/AdminPanal/FeedBackList'
 
 
 function App() {
@@ -34,21 +35,47 @@ function App() {
       <BrowserRouter>
       <Navbar />
         <Routes>
-            <Route path="/" element={<HomeBL/>} />
             <Route path="signin" element={<Signin />} />
             <Route path="signup" element={<SignUp />} />
             
             <Route element={<PersistLogin />}>
-                <Route element={<RequireAuth />} >
-                    <Route path="home" element={<HomeAL />} />
+                <Route path="/" element={<HomeBL/>} />
+                <Route element={<RequireAuth allowedRoles={["user"]} />} >
+                    <Route path="/home" element={<HomeAL />} />
                 </Route>
 
-                <Route element={<RequireAuth />} >
+                <Route element={<RequireAuth allowedRoles={["user"]} />} >
                     <Route path="quiz" element={<ListQuiz />} />
                 </Route>
-                <Route element={<RequireAuth />} >
+                <Route element={<RequireAuth allowedRoles={["user"]} />} >
                     <Route path="quiz/:quiz_id" element={<Quiz />} />
                 </Route> 
+
+                <Route element={<RequireAuth allowedRoles={["user"]} />} >
+                    <Route path="tandc" element={<TC />} />
+                </Route>
+                <Route element={<RequireAuth allowedRoles={["user"]} />} >
+                    <Route path="faq" element={<Faq />} />
+                </Route>
+                <Route element={<RequireAuth allowedRoles={["user"]} />} >
+                    <Route path="store" element={<Products />} />
+                </Route>
+                <Route element={<RequireAuth allowedRoles={["user"]} />} >
+                    <Route path="cart" element={<Cart />} />
+                </Route>
+                <Route element={<RequireAuth allowedRoles={["user"]} />} >
+                    <Route path="payment-gatway" element={<PaymentGateway />} />
+                </Route>
+                <Route element={<RequireAuth allowedRoles={["user"]} />} >
+                    <Route path="product/:id" element={<ViewProduct />} />
+                </Route>
+                <Route element={<RequireAuth allowedRoles={["user"]} />} >
+                    <Route path="chat" element={<Chat />} />
+                </Route>
+                <Route element={<RequireAuth allowedRoles={["user"]} />} >
+                    <Route path="feedback" element={<Feedback />} />
+                </Route>
+
                 <Route element={<RequireAuth allowedRoles={["admin"]} />} >
                     <Route path="admin-panel" element={<AdminPanal />} />
                 </Route>
@@ -64,29 +91,8 @@ function App() {
                 <Route element={<RequireAuth allowedRoles={["admin"]} />} >
                     <Route path="admin-panel/add-quiz" element={<AddQuiz />} />
                 </Route>
-                <Route element={<RequireAuth />} >
-                    <Route path="tandc" element={<TC />} />
-                </Route>
-                <Route element={<RequireAuth />} >
-                    <Route path="faq" element={<Faq />} />
-                </Route>
-                    <Route element={<RequireAuth />} >
-                        <Route path="store" element={<Products />} />
-                    </Route>
-                    <Route element={<RequireAuth />} >
-                        <Route path="cart" element={<Cart />} />
-                    </Route>
-                    <Route element={<RequireAuth />} >
-                        <Route path="payment-gatway" element={<PaymentGateway />} />
-                    </Route>
-                    <Route element={<RequireAuth />} >
-                        <Route path="product/:id" element={<ViewProduct />} />
-                    </Route>
-                <Route element={<RequireAuth />} >
-                    <Route path="chat" element={<Chat />} />
-                </Route>
-                <Route element={<RequireAuth />} >
-                    <Route path="feedback" element={<Feedback />} />
+                <Route element={<RequireAuth allowedRoles={["admin"]} />} >
+                    <Route path="admin-panel/feedback-list" element={<FeedBackList />} />
                 </Route>
             </Route>
         </Routes>
