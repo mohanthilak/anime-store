@@ -32,7 +32,7 @@ const LandingPage = () => {
     // }, [])
 
   return (
-    <div className='md:h-[100vh] flex flex-col md:flex-row items-center mt-16 md:mt-0 sm:h-[91vh]'>
+    <div className='flex flex-col md:flex-row items-center  md:mt-0 h-[91vh]'>
         {/* Left side */}
         <div className=' md:w-1/2 h-1/3 md:h-fit   mt-5 md:mt-0 '>
             <div className='text-5xl text-center md:text-left md:text-6xl lg:text-7xl 2xl:text-8xl font-bold'>

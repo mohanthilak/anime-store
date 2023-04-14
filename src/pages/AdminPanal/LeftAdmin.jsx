@@ -31,7 +31,7 @@ const LeftAdmin = () => {
             <div className='border-t-2 border-red-500 h-10 flex justify-center items-center cursor-pointer hover:border-x-2'>
                 <h1 className='text-2xl font-semibold  '>Orders</h1>
             </div>
-            <Link to="/admin-panel/add-product">
+            <Link to="/admin-panel/store-inventory">
                 <div className='border-t-2 border-red-500 h-10 flex justify-center items-center cursor-pointer hover:border-x-2'>
                     <h1 className='text-2xl font-semibold  '>Products</h1>
                 </div>
@@ -46,7 +46,7 @@ const LeftAdmin = () => {
                     <h1 className='text-2xl font-semibold  '>Feedback</h1>
                 </div>
             </Link>
-            <Link to="/admin-panel">
+            <Link to="/admin-panel/report">
                 <div className='border-t-2 border-red-500 h-10 flex justify-center items-center cursor-pointer hover:border-x-2'>
                     <h1 className='text-2xl font-semibold  '>Report</h1>
                 </div>

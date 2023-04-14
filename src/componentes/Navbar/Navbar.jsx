@@ -13,7 +13,9 @@ const Navbar = () => {
   const handleNav = () =>{
     setShowNav(!showNav)
   }
-
+  if(path === "/admin-panel/report" || path === "/admin-panel/%3CEmbed%20Url%3E"){
+    return;
+  } 
   const HandleLogout = () => {
     axiosPrivate.post(`/user/logout/${auth.uid}`).then(res=>{
         console.log(res.data)
@@ -30,7 +32,7 @@ const Navbar = () => {
               <h1 className=' text-xl p-4 w-full md:text-3xl font-bold decoration-2'><span className='text-red-500'>ANIME</span>STORE</h1>
           </Link>
         </div>
-        {auth?.accessToken ? <ul className={`${path === "admin-panel" ? "hidden":"block md:flex md:text-lg md:font-light md:uppercase gap-8"} `}>
+        {auth?.accessToken ? <ul className={`${path === "admin-panel" ? "hidden":"hidden  md:flex md:text-lg md:font-light md:uppercase gap-8"}`}>
             {/* <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="home">Home</Link></li> */}
             {auth.role === 'user'? <>
               <li className='py-1 cursor-pointer hover:font-medium hover:border-b-2 hover:border-gray-600'><Link to="feedback">Feedback</Link></li>
@@ -55,8 +57,7 @@ const Navbar = () => {
         </div>
         <div className={showNav ? ` fixed right-0  top-14 w-[60%] border-l-4 border-b-4 ${path === "admin-panel" ? "hidden bg-black text-white":"block bg-white text-black"}  ease-in-out duration-500  md:hidden` : 'fixed right-[-100%]'}>
             {auth?.accessToken ? <ul className='uppercase'>
-            {/* <Link to="home"><li className='p-4 hover:font-bold hover:border-b-2 hover:border-black'>Home</li></Link> */}
-            // <Link to="admin-panel"><li className='p-4 hover:font-bold hover:border-b-2 hover:border-black'>Admin</li></Link>
+            <Link to="feedback"><li className='p-4 hover:font-bold hover:border-b-2 hover:border-black'>Feedback</li></Link>
             <Link to="chat"><li className='p-4 hover:font-bold hover:border-b-2 hover:border-black'>Chat</li></Link>
             <Link to="quiz"><li className='p-4 hover:font-bold hover:border-b-2 hover:border-black'>Quiz</li></Link>
             <Link to="store"><li className='p-4 hover:font-bold hover:border-b-2 hover:border-black'>Store</li></Link>

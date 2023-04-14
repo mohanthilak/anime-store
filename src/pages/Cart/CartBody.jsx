@@ -1,4 +1,4 @@
-import {useEffect} from "react"
+import {useEffect, useState} from "react"
 import {VscDiffAdded, VscDiffRemoved} from "react-icons/vsc"
 import { Link } from "react-router-dom"
 import useCart from '../../Hooks/useCart'
@@ -10,12 +10,40 @@ const CartBody = ({compo}) =>{
     const {cartItems,setCartItems} = useCart();
     const {auth} = useAuth()
     const axiosPrivate = useAxiosPrivate()
+    const [cartId, setCartId] = useState("")
+    const HandleQuantityUpdate = (type, id, quantity) => {
+        if(type === "reduce" && quantity === 1){
+            axiosPrivate.post("/cart/remove-product", {
+                cartId, productId: id
+            }).then(res=>{
+                console.log(res.data)
+                if(res.data.success)
+                setCartItems(res.data.data.products)
+            })
+        }else{
+            console.log(type)
+            if(type === "reduce")  quantity -= 1;
+            else quantity += 1;
+
+            console.log(quantity)
+            axiosPrivate.post("/cart/edit-product", {
+                uid:auth?.uid, productElementId: id, quantity
+            }).then(res=>{
+                console.log(res.data)
+                if(res.data.success){
+                    setCartItems(res.data.data.products)
+                }
+            })
+        }
+    }
+
     useEffect(()=>{
         axiosPrivate.get(`/cart/current-cart/${auth.uid}`).then(res=>{
-            console.log("{}{}}}}}}}}",res.data);
+            console.log(res.data)
             if(res.data.success && res.data.data){
                 console.log("$#$#$#$#$#$#$#$#$", res.data.data.products)
             setCartItems(res.data.data.products)
+            setCartId(res.data.data._id)
         }else{
             setCartItems(null);
         }}).catch(e=>{
@@ -43,9 +71,15 @@ const CartBody = ({compo}) =>{
                                 </div>
                                 <div className={`flex items-center gap-2 md:${compo?"gap-2":"gap-10"}`}>
                                     <div className='flex items-center gap-1'>
-                                        <VscDiffRemoved size={20} />
+                                        <VscDiffRemoved onClick={(e)=>{
+                                            e.preventDefault();
+                                            HandleQuantityUpdate("reduce", el._id, el.quantity)
+                                        }} size={20} />
                                         <h1>{el.quantity}</h1>
-                                        <VscDiffAdded size={20} />
+                                        <VscDiffAdded onClick={(e)=>{
+                                            e.preventDefault();
+                                            HandleQuantityUpdate("increase", el._id, el.quantity)
+                                        }} size={20} />
                                     </div>
                                     <div>
                                         <h1>{el.quantity * el.price}</h1>

@@ -24,11 +24,9 @@ const ViewProduct = () => {
     }
     const HandleAddToCart = async () =>{
         const buf =cartItems;
-        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!",cartItems)
         const payload = {name: product.name, quantity:1,image: product.image,size, price: product.price, productId: product._id, totalAmount:product.price};
         console.log("Payload", payload)
         if(!buf){
-            console.log("Inside if")
             axiosPrivate.post("/cart/create", {
                 products: [payload],
                 uid: auth.uid,
@@ -75,6 +73,10 @@ const ViewProduct = () => {
                 axiosPrivate.post("/cart/add-product", {
                     id: auth.uid,
                     ...payload
+                }).then(res=>{
+                    if(res.data.success){
+                        setCartItems([...res.data.data.products])
+                    }
                 })
             }
             // axiosPrivate.post("/cart/add-product", {
@@ -113,51 +115,46 @@ const ViewProduct = () => {
 
   return (
     <div className='px-6  md:px-8 mt-5'>
-        <div className=' flex gap-4 border-b-2 border-black'>
+        <div className='flex gap-4 py-2 border-b-2 border-black'>
             {product &&  
-            <div className='flex '>
-            <div className='w-[45%] px-2 border-r-2 border-black flex items-center max-h-[400px] bg-pink-500'>
-                <img src={product.image} className=" max-w-[400px] max-h-[400px]" alt="" />
-            </div>
-            <div className='w-[55%]  h-[100%] p-5 flex flex-col max-h-[400px]'>
-                <div className=' flex gap-2'>
-                    {product.category && product.category.map((el, i)=>(
-                        <h1 className=' bg-slate-500 text-white px-2 py-1'>{el}</h1>
+            <div className='flex'>
+                <div className='px-2 border-r-2 border-black flex items-center max-h-[400px] '>
+                    <img src={product.image} className=" max-w-[400px] max-h-[400px]" alt="" />
+                </div>
+                <div className='w-[55%]  h-[100%] p-5 flex flex-col max-h-[400px]'>
+                    <div className=' flex gap-2'>
+                        {product.category && product.category.map((el, i)=>(
+                            <h1 key={i} className=' bg-slate-500 text-white px-2 py-1'>{el}</h1>
 
-                    ))}
-                    <h1 className=' bg-slate-500 text-white px-2 py-1'>Demon Slayer</h1>
+                        ))}
+                        <h1 className=' bg-slate-500 text-white px-2 py-1'>Demon Slayer</h1>
+                    </div>
+                    
+                    <div>
+                        <h1 className='font-bold text-4xl'>{product.name}</h1>
+                    </div>
+                    <div className='my-7 flex items-center gap-5 font-semibold'>
+                        <h1 className='text-2xl  flex items-center'>Price: <FaRupeeSign size={17} />{product.price} </h1>
+                        <p className='text-xl cursor-pointer hover:underline font-normal'>Reviews: <Rating onClick={handleRating} emptyStyle={{ display: "flex" }} fillStyle={{ display: "-webkit-inline-box" }} size={20} allowHover={false} initialValue={rating}// Will remove the inline style if applied 
+                        /> </p>
+                    </div>
+                    <div className='flex items-center'>
+                        <h1>Sizes:</h1>
+                        {product.sizes && product.sizes.map((el, i)=> (
+                            <button key={i} onClick={(e)=>setSize(el)}  className='border-2 border-black w-10 py-1 mx-2 hover:bg-black hover:text-white'>{el}</button>
+                        ))}
+                    </div>
+                    <div className='flex gap-4 my-7'>
+                        {/* <Link to="/cart"> */}
+                            <button onClick={HandleAddToCart} className='bg-black text-white px-2 py-1'>Buy Now</button>
+                        {/* </Link> */}
+                        <button onClick={HandleAddToCart} className='bg-black text-white px-2 py-1'>Add to Cart</button>
+                    </div>
+                    <div>
+                        <h1><span className='text-lg '>Description:</span> {product.description}</h1>
+                    </div>
                 </div>
-                
-                <div>
-                    <h1 className='font-bold text-4xl'>{product.name}</h1>
-                </div>
-                <div className='my-7 flex items-center gap-5 font-semibold'>
-                    <h1 className='text-2xl  flex items-center'>Price: <FaRupeeSign size={17} />{product.price} </h1>
-                    <p className='text-xl cursor-pointer hover:underline font-normal'>Reviews: <Rating onClick={handleRating} emptyStyle={{ display: "flex" }} fillStyle={{ display: "-webkit-inline-box" }} size={20} allowHover={false} initialValue={rating}// Will remove the inline style if applied 
-                    /> </p>
-                </div>
-                <div className='flex items-center'>
-                    <h1>Sizes:</h1>
-                    {product.sizes && product.sizes.map((el, i)=> (
-                        <button key={i} onClick={(e)=>setSize(el)} className='border-2 border-black w-10 py-1 mx-2 hover:bg-black hover:text-white'>{el}</button>
-                    ))}
-                    {/* <button className='border-2 border-black w-10 py-1 mx-2 hover:bg-black hover:text-white'>S</button>
-                    <button className='border-2 border-black w-10 py-1 mx-2 hover:bg-black hover:text-white'>M</button>
-                    <button className='border-2 border-black w-10 py-1 mx-2 hover:bg-black hover:text-white'>L</button>
-                    <button className='border-2 border-black w-10 py-1 mx-2 hover:bg-black hover:text-white'>XL</button> */}
-                </div>
-                <div className='flex gap-4 my-7'>
-                    {/* <Link to="/cart"> */}
-                        <button onClick={HandleAddToCart} className='bg-black text-white px-2 py-1'>Buy Now</button>
-                    {/* </Link> */}
-                    <button onClick={HandleAddToCart} className='bg-black text-white px-2 py-1'>Add to Cart</button>
-                </div>
-                <div>
-                    <h1><span className='text-lg '>Description:</span> {product.description}</h1>
-                </div>
-            </div>
-            </div>
-            }
+            </div>}
             <div className='sm:w-[37%] sm:flex hidden sm:h-full'>
                 <CartBody compo={true} />
             </div>

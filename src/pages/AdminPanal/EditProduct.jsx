@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import LeftAdmin from './LeftAdmin'
 import useAxiosPrivate from '../../Hooks/useAxiosPrivate'
+import { useParams } from 'react-router-dom'
 
-
-const AddProductComponent = () => {
+const EditProductComponent = ({}) => {
     const axiosPrivate = useAxiosPrivate();
-    
+    const {productId} = useParams()
     const [name, setName] = useState("");
     const [size, setSize] = useState([]);
     const [image, setImage] = useState("");
@@ -24,9 +24,28 @@ const AddProductComponent = () => {
             if(index !== -1){
                 arr.splice(index, 1);
                 setSize(arr);
+                console.log("else part", arr, index, size)
             }
         }
     }
+
+    useEffect(()=>{
+        axiosPrivate.get(`/product/single/${productId}`).then(res=>{
+            console.log(res);
+            if(res.data.success){
+                let product = res.data.data
+                setName(product.name);
+                setPrice(product.price);
+                setStock(product.stock)
+                setMaterial(product.material)
+                setDescription(product.description)
+                // setSize(product.sizes)
+                setCategories(product.category)
+            }
+        }).catch(e=> {
+            console.error(e);
+        })
+    }, [])
 
     const HandleCategorySelect= (e)=>{
         if(e.target.checked){
@@ -59,7 +78,7 @@ const AddProductComponent = () => {
                 formData.append(`category${i}`, c);
             })
             console.log(formData)
-            axiosPrivate.post("/product/create-single", formData).then(res=>{
+            axiosPrivate.post(`/product/edit-single/${productId}`, formData).then(res=>{
                 if(res.data.success){
                     console.log(res.data);
                     setCategories([])
@@ -130,7 +149,7 @@ const AddProductComponent = () => {
                         <div className='flex gap-4'>
                             <div className='flex gap-1 items-center'>
                                 <label htmlFor='naruto'>naruto</label>
-                                <input type="checkbox" onChange={HandleCategorySelect} id="naruto" value="naruto" />
+                                <input type="checkbox"  onChange={HandleCategorySelect} id="naruto" value="naruto" />
                             </div>
                             <div className='flex gap-1 items-center'>
                                 <label htmlFor='demon-slayer'>demon-slayer</label>
@@ -159,13 +178,13 @@ const AddProductComponent = () => {
     )
 }
 
-const AddProduct = () => {
+const EditProduct = () => {
   return (
     <div className='flex'>
         <LeftAdmin />
-        <AddProductComponent />
+        <EditProductComponent />
     </div>
   )
 }
 
-export default AddProduct
+export default EditProduct

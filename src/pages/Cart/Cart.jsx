@@ -3,18 +3,31 @@ import CartBody from "./CartBody"
 import {BiEdit} from "react-icons/bi"
 import useAxiosPrivate from '../../Hooks/useAxiosPrivate'
 import useAuth from '../../Hooks/useAuth'
+import { Navigate } from "react-router-dom";
+import useCart from '../../Hooks/useCart'
+
 const Cart = () => {
+    const {cartItems} = useCart();
     const [paymentOption, setPaymentOption] = useState(false);
     const axiosPrivate = useAxiosPrivate();
     const {auth} = useAuth();
-
-    const handleSubmit = () =>{
-        if(paymentOption){
+    let total = 0
+    
+    cartItems?.forEach((e) => {
+        total += e.quantity * e.price;
+    });
+    
+    const handleSubmit = (e) =>{
+        
+        console.log(paymentOption)
+        if(paymentOption === "cod"){
             axiosPrivate.post("/order/create", {
                 custId: auth.uid,
                 paymentType: paymentOption, 
             })
-        }    
+        }else if(paymentOption === "card"){
+            <Navigate to="payment-gatway" />
+        }  
     }
 
     return (
@@ -32,7 +45,7 @@ const Cart = () => {
                     <div className='m-4'>
                         <div className='flex justify-between'>
                             <h1>Cost of Products:</h1>
-                            <h1>$456</h1>
+                            <h1>${total}</h1>
                         </div>
                         <div className='flex justify-between'>
                             <h1>Delivery:</h1>
@@ -45,7 +58,7 @@ const Cart = () => {
                     <hr className=' my-1   h-[3px] border:none text-black bg-black' />
                         <div className='flex justify-between'>
                             <h1>Total:</h1>
-                            <h1 >$451</h1>
+                            <h1 >${total-5}</h1>
                         </div>
                     </div>
                     <div className=''>

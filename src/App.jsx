@@ -25,6 +25,12 @@ import Feedback from './pages/feedback/Feedback'
 import AddProduct from './pages/AdminPanal/AddProduct'
 import UsersDetails from './pages/AdminPanal/UsersDetails'
 import FeedBackList from './pages/AdminPanal/FeedBackList'
+import StoreInventory from './pages/AdminPanal/StoreInventory'
+import EditProduct from './pages/AdminPanal/EditProduct'
+import ReportPage from './pages/AdminPanal/ReportPage'
+import { PowerBIEmbed } from 'powerbi-client-react';
+import {models} from "powerbi-client"
+import PowerBIReport from './pages/AdminPanal/ReportPage'
 
 
 function App() {
@@ -33,24 +39,25 @@ function App() {
     // <div className="App bg-[#902c34] text-white">
     <div className="App text-black bg-white">
       <BrowserRouter>
-      <Navbar />
+        <Navbar />
+
         <Routes>
             <Route path="signin" element={<Signin />} />
             <Route path="signup" element={<SignUp />} />
             
             <Route element={<PersistLogin />}>
                 <Route path="/" element={<HomeBL/>} />
+
+                {/* User Routes */}
                 <Route element={<RequireAuth allowedRoles={["user"]} />} >
                     <Route path="/home" element={<HomeAL />} />
                 </Route>
-
                 <Route element={<RequireAuth allowedRoles={["user"]} />} >
                     <Route path="quiz" element={<ListQuiz />} />
                 </Route>
                 <Route element={<RequireAuth allowedRoles={["user"]} />} >
                     <Route path="quiz/:quiz_id" element={<Quiz />} />
                 </Route> 
-
                 <Route element={<RequireAuth allowedRoles={["user"]} />} >
                     <Route path="tandc" element={<TC />} />
                 </Route>
@@ -75,12 +82,24 @@ function App() {
                 <Route element={<RequireAuth allowedRoles={["user"]} />} >
                     <Route path="feedback" element={<Feedback />} />
                 </Route>
+                {/* User Routes End*/}
 
+
+                {/* Admin Routes */}
                 <Route element={<RequireAuth allowedRoles={["admin"]} />} >
                     <Route path="admin-panel" element={<AdminPanal />} />
                 </Route>
                 <Route element={<RequireAuth allowedRoles={["admin"]} />} >
                     <Route path="admin-panel/customers" element={<UsersDetails />} />
+                </Route>
+                <Route element={<RequireAuth allowedRoles={["admin"]} />} >
+                    <Route path="admin-panel/report" element={<PowerBIReport />} />
+                </Route>
+                <Route element={<RequireAuth allowedRoles={["admin"]} />} >
+                    <Route path="admin-panel/store-inventory" element={<StoreInventory />} />
+                </Route>
+                <Route element={<RequireAuth allowedRoles={["admin"]} />} >
+                    <Route path="admin-panel/edit-product/:productId" element={<EditProduct />} />
                 </Route>
                 <Route element={<RequireAuth allowedRoles={["admin"]} />}>
                     <Route path="admin-panel/add-product" element={<AddProduct />} />
@@ -96,10 +115,12 @@ function App() {
                 </Route>
             </Route>
         </Routes>
+        
       </BrowserRouter>
       
     </div>
   )
+
 }
 
 export default App

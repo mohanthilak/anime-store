@@ -25,10 +25,8 @@ const Quiz = () => {
     
     const HandlePreviousQuestion = () => {
         if (count > 0) {
-            console.log("dsffdsfsfsdfsdfsdfsdfsdfsd", count)
             let buffer = count - 1;
             setCount(count - 1);
-            console.log("dsffdsfsfsdfsdfsdfsdfsdfsd", count)
             setQuestion(quiz[buffer]);
         }
     }
