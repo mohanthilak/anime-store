@@ -1,56 +1,42 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import useAuth from '../../Hooks/useAuth'
+import sus from "./sus.png"
 
 const HomeBL = () => {
   const {auth} = useAuth();
 
 
   return (
-    <div className='h-[91vh] mx-6 border-gray-600 border-x-2 flex justify-center  md:mx-12 p-4'>
+    <div className='h-[100vh] '>
 
-        <div className='text-center  self-center text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl font-bold '>
+      <div className='h-[65vh] flex flex-col justify-between items-center bg-black text-white w-full pt-10'>
+          <div className='text-center'>
+              <h1 className='font-bold text-3xl'>Welcome to <span className='text-red-500'>Anime</span>STORE</h1>
+              <p className='p-5 text-lg text-red-300'>Purchase your favourite Merchandise, Chat with your friends and<br /> try out our Quiz portal!</p>
+          </div>
+          <div className=' overflow-hidden'>
+            <img width={280}  src={sus} />
+          </div>
+      </div>
+      <div className='h-[35vh]  w-full'>
+          <div className='flex flex-col items-center justify-center h-[100%] gap-10 '>
+            <div className='bg-red-500 rounded-full w-56 text-xl font-bold px-4 py-2 border-4 border-black text-center'>
+                <Link to="/signup">CREATE ACCOUNT</Link>
+            </div>
+            <div className='bg-red-500 rounded-full w-56 text-xl font-bold px-4 py-2 border-4 border-black text-center'>
+                <Link to="/signin">LOG IN</Link>
+            </div>
+          </div>
+      </div>
+
+        {/* <div className='text-center  self-center text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl font-bold '>
             <h1 className=' leading-tight'>JOIN US AND <br/> EXPERIENCE AN <br/> ANIME FANTASY PARK</h1>
             <div className='flex justify-around font-semibold pt-6 text-lg '>
                 <Link to="/signin" className=' border-2 border-black px-2 py-1 hover:bg-black hover:text-white'>Login</Link>
                 <Link to="/signup" className=' border-2 border-black px-2 py-1 hover:bg-black hover:text-white'>Create Account</Link>
             </div>
-        </div>
-
-        
-        {/* <div className='w-1/2 pt-4 px-10 hidden md:block md:flex flex-col justify-between'> */}
-
-          {/* <div className='group bg-white text-black border-2  border-black w-56 '>
-            <div className='flex h-12 justify-between items-center bg-pink-400 group-hover:border-b-2 border-black px-4 font-semibold'>
-              <h1>Buy Merch</h1>
-              <AiOutlineDown />
-            </div>
-            <div className=' hidden group-hover:block p-2'>
-              <p>dsaf fasd afds  afda afda fa fdfaf daffa ff dafad afadafa fdsasdf  adssadfasfd afddasf asdfads asdfasd  adsfas  dsafaf adsfaf fadsa.</p>
-            </div>
-          </div> */}
-
-          {/* <div className='group bg-white text-black border-2 border-black w-56 absolute right-20 top-[43%] '>
-            <div className='flex h-12 justify-between items-center group-hover:border-b-2 bg-yellow-300 border-black px-4 font-semibold'>
-              <h1>Take Anime Quiz</h1>
-              <AiOutlineDown />
-            </div>
-            <div className=' hidden group-hover:block p-2'>
-              <p>dsaf fasd afds  afda afda fa fdfaf daffa ff dafad afadafa fdsasdf  adssadfasfd afddasf asdfads asdfasd  adsfas  dsafaf adsfaf fadsa.</p>
-            </div>
-          </div> */}
-
-          {/* <div className='group bg-white text-black border-2 border-black w-56 absolute top-[73%]'>
-
-            <div className='flex h-12 justify-between items-center group-hover:border-b-2 bg-blue-400 border-black px-4 font-semibold'>
-              <h1>Chat With Friends</h1>
-              <AiOutlineDown />
-            </div>
-            <div className='hidden group-hover:block p-2'>
-              <p>dsaf fasd afds  afda afda fa fdfaf afddasf asdfads asdfasd  adsfas  dsafaf adsfaf fadsa.</p>
-            </div>
-          </div> */}
-        {/* </div> */}
+        </div> */}
     </div>
   )
 }

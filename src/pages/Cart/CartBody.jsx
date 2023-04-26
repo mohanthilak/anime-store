@@ -54,9 +54,9 @@ const CartBody = ({compo}) =>{
     return (
         <div className='border-2 border-black'>
             <div className='p-2'>
-                <h1 className=' text-lg font-semibold'>Cart Items</h1>
+                <h1 className=' text-lg font-semibold'>Cart Items: {cartItems?.length} products</h1>
                 <hr className='my-1   h-[3px] border:none text-black bg-black' />
-                <div className='p-2 overflow-hidden'>
+                <div className='p-2 overflow-hidden h-[400px] overflow-y-scroll'>
                     {cartItems ?.length >0 ? cartItems.map((el, i)=>(
                         <span key={i}>
                         <div className={`flex ${compo?"flex-col items-center gap-2": ""} w-[100%] justify-between my-4`}>

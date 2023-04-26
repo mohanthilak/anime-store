@@ -13,7 +13,7 @@ const Navbar = () => {
   const handleNav = () =>{
     setShowNav(!showNav)
   }
-  if(path === "/admin-panel/report" || path === "/admin-panel/%3CEmbed%20Url%3E"){
+  if(path === "/admin-panel/report" || path === "/admin-panel/%3CEmbed%20Url%3E" ||  location.pathname === "/"){
     return;
   } 
   const HandleLogout = () => {

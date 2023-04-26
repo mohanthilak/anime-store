@@ -14,15 +14,31 @@ const ViewProduct = () => {
     const {auth} = useAuth()
     
     const [rating, setRating] = useState(4);
-    const [size, setSize] = useState("")
+    const [sizes, setSizes] = useState([])
     const [product, setProduct] = useState({});
     const [recommendations, setRecommendation] = useState([])
-    const {cartItems, setCartItems} = useCart()
+    const {cartItems, setCartItems} = useCart();
+    const [sizeS, setSizeS] = useState(false)
+    const [sizeM, setSizeM] = useState(false)
+    const [sizeL, setSizeL] = useState(false)
 
     const handleRating = (rate) => {
         setRating(rate)
     }
-    const HandleAddToCart = async () =>{
+
+    const HandleAddToCart = () =>{
+        console.log(sizes)
+        for (let i = 0; i < sizes.length; i++) {
+            updateCartInBackend(sizes[i]);
+        }
+        setSizes([])
+        setSizeS(false)
+        setSizeM(false)
+        setSizeL(false)
+    }
+
+
+    const updateCartInBackend = async (size) =>{
         const buf =cartItems;
         const payload = {name: product.name, quantity:1,image: product.image,size, price: product.price, productId: product._id, totalAmount:product.price};
         console.log("Payload", payload)
@@ -113,11 +129,64 @@ const ViewProduct = () => {
 
     }, [])
 
+    const toggleSizeSmall = (e)=> {
+        if(!sizeS) {
+            if(!sizes.includes('S')){
+                setSizes([...sizes, "S"])
+            }
+        }else{
+            if(sizes.includes('S')){
+                const arr = sizes;
+                console.log(arr)
+                arr.splice(arr.indexOf("S"),1)
+                console.log(arr)
+                setSizes([...arr])   
+            }
+        }
+        setSizeS(!sizeS)
+        e.preventDefault()
+    }
+    const toggleSizeMedium = (e)=> {
+        if(!sizeM) {
+            if(!sizes.includes('M')){
+                setSizes([...sizes, "M"])
+            }
+        }else{
+            if(sizes.includes('M')){
+                const arr = sizes;
+                console.log(arr)
+                arr.splice(arr.indexOf("M"),1)
+                console.log(arr)
+                setSizes([...arr])            
+            }
+        }
+        setSizeM(!sizeM)
+        e.preventDefault()
+    }
+    const toggleSizeLarge = (e)=> {
+        if(!sizeL) {
+            if(!sizes.includes('L')){
+                setSizes([...sizes, "L"])
+            }
+        }else{
+            if(sizes.includes('L')){
+                const arr = sizes;
+                const index = arr.indexOf("L")
+                console.log(arr, index)
+                arr.splice(index, 1)
+                console.log(arr)
+                setSizes([...arr])
+            }   
+        }
+        setSizeL(!sizeL)
+        e.preventDefault()
+    }
+
   return (
     <div className='px-6  md:px-8 mt-5'>
-        <div className='flex gap-4 py-2 border-b-2 border-black'>
+        <div className='flex gap-4 py-2 border-b-2  border-black'>
             {product &&  
-            <div className='flex'>
+            <div className='flex w-2/3'>
                 <div className='px-2 border-r-2 border-black flex items-center max-h-[400px] '>
                     <img src={product.image} className=" max-w-[400px] max-h-[400px]" alt="" />
                 </div>
@@ -140,9 +209,13 @@ const ViewProduct = () => {
                     </div>
                     <div className='flex items-center'>
                         <h1>Sizes:</h1>
-                        {product.sizes && product.sizes.map((el, i)=> (
-                            <button key={i} onClick={(e)=>setSize(el)}  className='border-2 border-black w-10 py-1 mx-2 hover:bg-black hover:text-white'>{el}</button>
-                        ))}
+                        {product.sizes && (
+                         <>
+                            <button onClick={toggleSizeSmall}  className={`${product.sizes.includes('S')?"block":"hidden"} border-2 border-black w-10 py-1 mx-2 ${sizeS? "bg-black text-white": ""}  hover:bg-black hover:text-white`}>{'S'}</button>
+                            <button onClick={toggleSizeMedium}  className={`${product.sizes.includes('M')?"block":"hidden"} border-2 border-black w-10 py-1 mx-2 ${sizeM? "bg-black text-white": ""} hover:bg-black hover:text-white`}>{"M"}</button>
+                            <button onClick={toggleSizeLarge}  className={`${product.sizes.includes('L')?"block":"hidden"} border-2 border-black w-10 py-1 mx-2 ${sizeL? "bg-black text-white": ""} hover:bg-black hover:text-white`}>{"L"}</button>
+                         </>
+                        )}
                     </div>
                     <div className='flex gap-4 my-7'>
                         {/* <Link to="/cart"> */}
@@ -155,7 +228,7 @@ const ViewProduct = () => {
                     </div>
                 </div>
             </div>}
-            <div className='sm:w-[37%] sm:flex hidden sm:h-full'>
+            <div className='sm:w-1/3  sm:flex sm:justify-end hidden sm:h-full'>
                 <CartBody compo={true} />
             </div>
             
