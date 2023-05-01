@@ -59,7 +59,7 @@ const LeftSide = ({setClient}) => {
         {/* Contacts */}
         <div className='my-3 px-2 h-[68vh]   overflow-y-scroll'>
             {/* Contact */}
-            <div onClick={()=>setClient("ads")} className='cursor-pointer flex items-center'>
+            {/* <div onClick={()=>setClient("ads")} className='cursor-pointer flex items-center'>
                 <img className='h-[50px] w-[50px] rounded-full ' src="https://resizing.flixster.com/gn47S-fE0l-z2a5CFmz45-397JU=/218x280/v2/https://flxt.tmsimg.com/assets/573762_v9_bc.jpg"  alt="contact-profile-picture" />
                 <div className=" px-2 w-full">
                     <div className='flex justify-between items-center'>
@@ -74,7 +74,7 @@ const LeftSide = ({setClient}) => {
                         <p className="text-sm">Hi Mohan, let's meet up soon</p>
                     </div>
                 </div>
-            </div>
+            </div> */}
             <hr className='h-[2px] my-4 bg-gray-200 ' />
             {searchedUsers.length > 0 ? searchedUsers.map((item, i)=>(
                 <div key={i}>

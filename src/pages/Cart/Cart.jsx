@@ -45,20 +45,20 @@ const Cart = () => {
                     <div className='m-4'>
                         <div className='flex justify-between'>
                             <h1>Cost of Products:</h1>
-                            <h1>${total}</h1>
+                            <h1>Rs. {total}</h1>
                         </div>
                         <div className='flex justify-between'>
                             <h1>Delivery:</h1>
-                            <h1>$5</h1>
+                            <h1>Rs. 5</h1>
                         </div>
                         <div className='flex justify-between'>
                             <h1>Discount:</h1>
-                            <h1>$10</h1>
+                            <h1>Rs. 10</h1>
                         </div>
                     <hr className=' my-1   h-[3px] border:none text-black bg-black' />
                         <div className='flex justify-between'>
                             <h1>Total:</h1>
-                            <h1 >${total-5}</h1>
+                            <h1 >Rs. {total-5}</h1>
                         </div>
                     </div>
                     <div className=''>
@@ -73,10 +73,10 @@ const Cart = () => {
                                 <input onChange={(e)=>setPaymentOption(e.target.value)} type="radio" name="payment_option" id="payment1" value="card" />
                                 <label htmlFor="payment1">Card:</label>
                             </div>
-                            <div className='flex gap-1'>
+                            {/* <div className='flex gap-1'>
                                 <input onChange={(e)=>setPaymentOption(e.target.value)} type="radio" name="payment_option" id="payment2" value="UPI" />
                                 <label htmlFor="payment2">UPI</label>
-                            </div>
+                            </div> */}
                         </form>
                     </div>
                     <div className='flex justify-center mt-2'>
@@ -84,7 +84,7 @@ const Cart = () => {
                     </div>
                 </div>
             </div>
-            <div className='w-full  md:w-1/2'>
+            {/* <div className='w-full  md:w-1/2'>
                 <div className='border-2 border-black'>
                     <div className='p-2'>
                         <div className='flex justify-between items-center'>
@@ -104,7 +104,7 @@ const Cart = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
         <CartBody />
         

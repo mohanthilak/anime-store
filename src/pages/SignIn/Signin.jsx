@@ -16,15 +16,16 @@ const {auth, setAuth} = useAuth();
     const [password, setPassword] = useState('');
     const [responseMessage, setResponseMessage] = useState("")
 
-    useEffect(()=>{
-        if(auth?.uid){
-            navigate(-1)
-        }else{
-            console.log("did not navigate back")
-        }
-    },[])
+    // useEffect(()=>{
+    //     if(auth?.uid){
+    //         auth.role === "user" ? navigate("/home") : navigate("/admin-panel")
+    //     }else{
+    //         console.log("did not navigate back")
+    //     }
+    // },[])
     
     const HandleSignIn = () =>{
+        console.log("hi")
         setResponseMessage("");
         axios.post("user/signin", {
             authText:email, password
@@ -68,11 +69,11 @@ const {auth, setAuth} = useAuth();
                             </div>
                             
                             <div className='flex flex-col gap-2 '>
-                                <label>Enter your email:</label>
+                                <label>Enter your Password:</label>
                                 <input type="password" onChange={(e)=>setPassword(e.target.value)} className='border-b-2 border-black'/>
                             </div>
 
-                            <button onClick={HandleSignIn} className='bg-black rounded-2xl text-white px-4 py-2 hover:bg-white hover:text-[#902c34] hover:font-medium hover:border-2 hover:border-[#902c34]'>SIGN IN</button>
+                            <button onClick={(e)=>{e.preventDefault();HandleSignIn()}} className='bg-black rounded-2xl text-white px-4 py-2 hover:bg-white hover:text-[#902c34] hover:font-medium hover:border-2 hover:border-[#902c34]'>SIGN IN</button>
                         </form>
                         <div className='text-center mt-4 text-lg font-medium'>                           
                             <Link to="/signup" ><span className='text-xl font-bold'>New User?</span> Create an Account</Link>

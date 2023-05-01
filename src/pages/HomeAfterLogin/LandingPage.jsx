@@ -4,10 +4,8 @@ import useAuth from '../../Hooks/useAuth'
 import useAxiosPrivate from '../../Hooks/useAxiosPrivate'
 import {Link} from "react-router-dom"
 
-const LandingPage = () => {
-    const axiosPrivate = useAxiosPrivate() 
-    const [secretMessage, setSecretMessage] = useState('')
-    const {auth} = useAuth();
+const LandingPage = ({scrollToAboutUs}) => {
+    const axiosPrivate = useAxiosPrivate()
 
     // useEffect(()=>{
     //     let isMounted = true;
@@ -41,11 +39,11 @@ const LandingPage = () => {
                 <h1>& CHAT WITH FRIENDS</h1>
             </div>
             <div className='flex lg:w-2/3 justify-between mt-2 text-xl'>
-                <Link to="/aboutus">
-                    <div className='hover:bg-black hover:text-white px-4 py-2 cursor-pointer'>
+                {/* <Link to="/aboutus"> */}
+                    <div onClick={(e)=>{scrollToAboutUs()}} className='hover:bg-black hover:text-white px-4 py-2 cursor-pointer'>
                         <button>ABOUT US</button>
                     </div>
-                </Link>
+                {/* </Link> */}
                 <Link to="/tandc">
                     <div className='hover:bg-black hover:text-white px-4 py-2 cursor-pointer'>
                         <button>TERMS & CONDITIONS</button>

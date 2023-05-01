@@ -75,7 +75,7 @@ const AddProductComponent = () => {
                 <h1 className='text-xl font-semibold'>Add Product</h1>
                 <hr className='my-1 w-32 h-[3px] bg-black' />
             </div>
-            <div className='border-2 border-black mt-4'>
+            <div className='border-2 border-black mt-4 h-[82vh] overflow-y-scroll'>
                 <form className='flex flex-col gap-3 p-2'>
                     <div className=''>
                         <label htmlFor="name">Product Name:</label>
@@ -126,23 +126,70 @@ const AddProductComponent = () => {
                     </div>
                     <hr className='h-[2px] bg-gray-400' />
                     <div>
+                    {/* Items- keychains,posters, stickers,bobbles
+Animes- Dragon Ball Z, Demon Slayer, Jujutsu Kaisen, Naruto, One piece,Bungo Stray Dogs, Death note, My hero academia, HxH */}
                         <div>Category:</div>
-                        <div className='flex gap-4'>
+                        <div className='flex flex-wrap gap-4 '>
                             <div className='flex gap-1 items-center'>
-                                <label htmlFor='naruto'>naruto</label>
                                 <input type="checkbox" onChange={HandleCategorySelect} id="naruto" value="naruto" />
+                                <label htmlFor='naruto'>naruto</label>
                             </div>
                             <div className='flex gap-1 items-center'>
-                                <label htmlFor='demon-slayer'>demon-slayer</label>
                                 <input type="checkbox" onChange={HandleCategorySelect} id="demon-slayer" value="demon-slayer" />
+                                <label htmlFor='demon-slayer'>demon-slayer</label>
                             </div>
                             <div className='flex gap-1 items-center'>
-                                <label htmlFor='T-Shirt'>T-Shirt</label>
+                                <input type="checkbox" onChange={HandleCategorySelect} id="Dragon Ball Z" value="Dragon Ball Z" />
+                                <label htmlFor='Dragon Ball Z'>Dragon Ball Z</label>
+                            </div>
+                            <div className='flex gap-1 items-center'>
+                                <input type="checkbox" onChange={HandleCategorySelect} id="Jujutsu Kaisen" value="Jujutsu Kaisen" />
+                                <label htmlFor='Jujutsu Kaisen'>Jujutsu Kaisen</label>
+                            </div>
+                            <div className='flex gap-1 items-center'>
+                                <input type="checkbox" onChange={HandleCategorySelect} id="One piece" value="One piece" />
+                                <label htmlFor='One piece'>One piece</label>
+                            </div>
+                            <div className='flex gap-1 items-center'>
+                                <input type="checkbox" onChange={HandleCategorySelect} id="Bungo Stray Dogs" value="Bungo Stray Dogs" />
+                                <label htmlFor='Bungo Stray Dogs'>Bungo Stray Dogs</label>
+                            </div>
+                            <div className='flex gap-1 items-center'>
+                                <input type="checkbox" onChange={HandleCategorySelect} id="Death note" value="Death note" />
+                                <label htmlFor='Death note'>Death note</label>
+                            </div>
+                            <div className='flex gap-1 items-center'>
+                                <input type="checkbox" onChange={HandleCategorySelect} id="My hero academia" value="My hero academia" />
+                                <label htmlFor='My hero academia'>My hero academia</label>
+                            </div>
+                            <div className='flex gap-1 items-center'>
+                                <input type="checkbox" onChange={HandleCategorySelect} id="HunterxHunter" value="HunterxHunter" />
+                                <label htmlFor='HunterxHunter'>HunterxHunter</label>
+                            </div>
+                            
+                            <div className='flex gap-1 items-center'>
                                 <input type="checkbox" onChange={HandleCategorySelect} id="T-Shirt" value="T-Shirt" />
+                                <label htmlFor='T-Shirt'>T-Shirt</label>
                             </div>
                             <div className='flex gap-1 items-center'>
-                                <label htmlFor='bracelet'>bracelet</label>
                                 <input type="checkbox" onChange={HandleCategorySelect} id="bracelet" value="bracelet" />
+                                <label htmlFor='bracelet'>bracelet</label>
+                            </div>
+                            <div className='flex gap-1 items-center'>
+                                <input type="checkbox" onChange={HandleCategorySelect} id="keychains" value="keychains" />
+                                <label htmlFor='keychains'>keychains</label>
+                            </div>
+                            <div className='flex gap-1 items-center'>
+                                <input type="checkbox" onChange={HandleCategorySelect} id="posters" value="posters" />
+                                <label htmlFor='posters'>posters</label>
+                            </div>
+                            <div className='flex gap-1 items-center'>
+                                <input type="checkbox" onChange={HandleCategorySelect} id="stickers" value="stickers" />
+                                <label htmlFor='stickers'>stickers</label>
+                            </div>
+                            <div className='flex gap-1 items-center'>
+                                <input type="checkbox" onChange={HandleCategorySelect} id="bobbles" value="bobbles" />
+                                <label htmlFor='bobbles'>bobbles</label>
                             </div>
                         </div>
                         {/* <div>

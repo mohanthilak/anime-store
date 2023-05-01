@@ -53,7 +53,7 @@ const Signin = () => {
                             </div>
                             
                             <div className='flex flex-col gap-2 '>
-                                <label>Enter your email:</label>
+                                <label>Enter your Password:</label>
                                 <input type="password" onChange={(e)=>setPassword(e.target.value)} className='border-b-2 border-black'/>
                             </div>
 
