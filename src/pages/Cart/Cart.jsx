@@ -18,15 +18,17 @@ const Cart = () => {
     });
     
     const handleSubmit = (e) =>{
-        
-        console.log(paymentOption)
+        e.preventDefault();
         if(paymentOption === "cod"){
             axiosPrivate.post("/order/create", {
                 custId: auth.uid,
                 paymentType: paymentOption, 
+            }).then(res=>{
+                console.log(res);
             })
         }else if(paymentOption === "card"){
-            <Navigate to="payment-gatway" />
+            console.log(paymentOption)
+            window.location.assign("/payment-gatway")
         }  
     }
 

@@ -1,13 +1,20 @@
-import {useState, useEffect} from "react";
+import {useRef, useState, useEffect} from "react";
 import {MdOutlineAttachFile} from "react-icons/md"
 import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 import useAuth from "../../Hooks/useAuth"
 import dazai from "./dazai.jpg"
+import propic from "./profilepic.jpg"
+
 
 const RightSide = ({client, socket}) => {
+    const lastDivRef = useRef(null);
     const axiosPrivate = useAxiosPrivate();
     const [messageInput, setMessageInput] = useState();
     const [messages, setMessages] = useState([]);
+
+    const scrollToBottom = () => {
+        lastDivRef?.current?.scrollIntoView() 
+    }
 
     const {auth} = useAuth();
     const ConvertUnixToLocalTime = (unixTime) => {
@@ -32,6 +39,10 @@ const RightSide = ({client, socket}) => {
             }))
         }
     }
+
+    useEffect(()=>{
+        scrollToBottom()
+    }, [messages])
 
     socket.on("message-send-status", (data)=>{
         if(data.messageSent){
@@ -67,7 +78,7 @@ const RightSide = ({client, socket}) => {
             {/* Menu Bar */}
             <div className='h-[10%] px-2 flex items-center border-b-2'>
                 <div className='flex items-center gap-2'>
-                    <img className='h-[45px] w-[45px] rounded-full ' src="https://resizing.flixster.com/gn47S-fE0l-z2a5CFmz45-397JU=/218x280/v2/https://flxt.tmsimg.com/assets/573762_v9_bc.jpg" alt="contact-profile-picture" />
+                    <img className='h-[45px] w-[45px] rounded-full ' src={propic} alt="contact-profile-picture" />
                     <h1 className='font-semibold text-2xl'>{client.username}</h1>
                 </div>
             </div>
@@ -77,7 +88,7 @@ const RightSide = ({client, socket}) => {
                     <div>
                         <p className='text-sm text-center'>12/1/2023</p>
                     </div>
-                    <div className='max-w-[45%] p-2 bg-green-200 my-2 self-end rounded-xl overflow-hidden'>
+                    {/* <div className='max-w-[45%] p-2 bg-green-200 my-2 self-end rounded-xl overflow-hidden'>
                         <p className=''>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus non, dolorum, necessitatibus repellat unde magni blanditiis itaque maiores eum expedita alias eaque saepe molestias accusamus! Reiciendis quaerat temporibus porro accusantium! asdada necessitatibus repellat unde magni blanditiismagni blanditiis</p>
                         <p className=" text-right text-sm my-1">12:20PM</p>
                     </div>
@@ -95,13 +106,14 @@ const RightSide = ({client, socket}) => {
                     </div>
                     <div className='max-w-[45%] my-2 self-end rounded-xl overflow-hidden'>
                         <p className='p-2 bg-green-200'>porro accusantium!</p>
-                    </div>
+                    </div> */}
                     {messages.length>0 && messages.map((item, i)=>(
                         <div key={i} className={`max-w-[45%] my-2 ${item.from === auth.uid ? "self-end": "self-start"} rounded-xl overflow-hidden p-2 bg-green-200`}>
                         <p className=' text-base'>{item.messageText}</p>
                         <p className=" text-right text-xs my-1">{ConvertUnixToLocalTime(item.dateTime)}</p>
                         </div>
                     ))}
+                    <div ref={lastDivRef}></div>
                 </div>
             </div>
             {/* Text Menu */}

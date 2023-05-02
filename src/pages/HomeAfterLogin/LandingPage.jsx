@@ -55,6 +55,9 @@ const LandingPage = ({scrollToAboutUs}) => {
                     </div>
                 </Link>
             </div>
+            <div className='my-4'>
+                <a className='text-xl px-4 py-2 hover:bg-black hover:text-white' href="http://localhost:8000/">ANIME PREDICTIONS</a>
+            </div>
         </div>
         {/* Right Side */}
         <div className='self-center md:self-end h-2/3 flex items-end md:justify-end md:w-1/2 '>

@@ -5,6 +5,7 @@ import { RxDotsHorizontal } from "react-icons/rx"
 import { AiOutlineSearch } from "react-icons/ai"
 import useAxiosPrivate from '../../Hooks/useAxiosPrivate'
 import useAuth from "../../Hooks/useAuth"
+import propic from "./profilepic.jpg"
 
 const LeftSide = ({setClient}) => {
     const [searchText, setSearchText] = useState("");
@@ -79,7 +80,7 @@ const LeftSide = ({setClient}) => {
             {searchedUsers.length > 0 ? searchedUsers.map((item, i)=>(
                 <div key={i}>
                 <div onClick={()=>setClient(item)} className='cursor-pointer flex items-center'>
-                    <img className='h-[50px] w-[50px] rounded-full ' src="https://resizing.flixster.com/gn47S-fE0l-z2a5CFmz45-397JU=/218x280/v2/https://flxt.tmsimg.com/assets/573762_v9_bc.jpg"  alt="contact-profile-picture" />
+                    <img className='h-[50px] w-[50px] rounded-full ' src={propic}  alt="contact-profile-picture" />
                     <div className=" px-2 w-full">
                         <div className='flex justify-between items-center'>
                             <div>
@@ -99,7 +100,7 @@ const LeftSide = ({setClient}) => {
             )): chats.length>0 && chats.map((item, i)=>(
                 <div key={i}>
                 <div onClick={()=>setClient(item.users[0])} className='cursor-pointer flex items-center'>
-                    <img className='h-[50px] w-[50px] rounded-full ' src="https://resizing.flixster.com/gn47S-fE0l-z2a5CFmz45-397JU=/218x280/v2/https://flxt.tmsimg.com/assets/573762_v9_bc.jpg"  alt="contact-profile-picture" />
+                    <img className='h-[50px] w-[50px] rounded-full ' src={propic}  alt="contact-profile-picture" />
                     <div className=" px-2 w-full">
                         <div className='flex justify-between items-center'>
                             <div>
