@@ -46,11 +46,11 @@ const LeftAdmin = () => {
                     <h1 className='text-2xl font-semibold  '>Feedback</h1>
                 </div>
             </Link>
-            <Link to="/admin-panel/report">
+            <a href="http://localhost:8080/dashboard.php">
                 <div className='border-t-2 border-red-500 h-10 flex justify-center items-center cursor-pointer hover:border-x-2'>
                     <h1 className='text-2xl font-semibold  '>Report</h1>
                 </div>
-            </Link>
+            </a>
             <div>
                 <img src={Akame} alt="" />
             </div>
